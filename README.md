@@ -1,4 +1,6 @@
 # knapsack
+[![Travis branch](https://img.shields.io/travis/1995parham/knapsack/master.svg?style=flat-square)](https://travis-ci.com/1995parham/knapsack)
+
 ## Intorduction
 The knapsack problem is an integer programming problem with boolean variables.
 We relax its binary variables with real numbers from 0 to 1 and solve
