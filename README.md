@@ -1,5 +1,5 @@
 # knapsack
-[![Travis branch](https://img.shields.io/travis/1995parham/knapsack/master.svg?style=flat-square)](https://travis-ci.com/1995parham/knapsack)
+[![Travis branch](https://img.shields.io/travis/1995parham/knapsack/master.svg?style=flat-square)](https://travis-ci.org/1995parham/knapsack)
 
 ## Intorduction
 The knapsack problem is an integer programming problem with boolean variables.
