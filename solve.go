@@ -14,39 +14,36 @@
 package knapsack
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/1995parham/knapsack/problem"
 
 	"gonum.org/v1/gonum/optimize"
 )
 
-// Sovle given knapsack problem with gradient descent
+// Solve solves given knapsack problem with gradient descent
 // method
-func Solve(p problem.Problem) {
-	p := optimize.Problem{
+func Solve(p problem.Problem) (*optimize.Result, error) {
+	op := optimize.Problem{
 		Func: p.Func,
 		Grad: p.Grad,
 	}
 
-	var x []int
-	x = make([]int, len(p.Items))
+	var x []float64
+	x = make([]float64, len(p.Items))
 
 	settings := optimize.DefaultSettingsLocal()
 	settings.Recorder = nil
-	settings.GradientThreshold = 1e-12
 	settings.FunctionConverge = nil
 
-	result, err := optimize.Maximize(p, x, settings, &optimize.GradientDescent{})
+	result, err := optimize.Minimize(op, x, settings, &optimize.GradientDescent{})
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	if err = result.Status.Err(); err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
-	fmt.Printf("result.Status: %v\n", result.Status)
-	fmt.Printf("result.X: %v\n", result.X)
-	fmt.Printf("result.F: %v\n", result.F)
-	fmt.Printf("result.Stats.FuncEvaluations: %d\n", result.Stats.FuncEvaluations)
+
+	// correct objective function value
+	result.F = -result.F
+
+	return result, nil
 }
