@@ -21,7 +21,7 @@ public class Main {
 
         double[] xLast = new double[T];
 
-        for (int iter = 0; iter < iterations; iter++) {
+        for (int iteration = 0; iteration < iterations; iteration++) {
             try {
                 IloCplex cplex = new IloCplex();
 
